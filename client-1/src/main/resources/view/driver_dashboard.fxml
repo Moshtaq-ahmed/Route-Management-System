@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.DriverDashboardController"
+            prefWidth="900" prefHeight="600">
+
+    <!-- ───── HEADER + LOGOUT ───── -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
+            <VBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="driverNameLabel" style="-fx-font-size: 18px; -fx-text-fill: #f57c00;"/>
+                <Label fx:id="driverIdLabel"/>
+                <Label fx:id="assignedBusLabel"/>
+                <Label fx:id="assignedRouteLabel"/>
+            </VBox>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Logout"
+                    onAction="#handleLogout"
+                    styleClass="button-red"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER (unchanged) -->
+    <center>
+        <VBox spacing="20" alignment="CENTER" style="-fx-padding: 20;">
+            <Label text="Select Bus Route:"/>
+            <ComboBox fx:id="busRouteComboBox" prefWidth="250"/>
+
+            <Label text="Update Current Location:"/>
+            <ComboBox fx:id="locationComboBox" prefWidth="250"/>
+
+            <Button text="Update Location"
+                    onAction="#updateLocation"
+                    style="-fx-background-color: #f57c00; -fx-text-fill: white;"/>
+
+            <Label fx:id="statusLabel" style="-fx-font-weight: bold; -fx-padding: 10;"/>
+        </VBox>
+    </center>
+</BorderPane>

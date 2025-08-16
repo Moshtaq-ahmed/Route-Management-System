@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.StudentDashboardController"
+            prefWidth="900" prefHeight="600"
+            stylesheets="@/assets/style.css"
+            styleClass="pane-white">
+
+    <!-- ── HEADER ── -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" BorderPane.alignment="CENTER"
+              style="-fx-padding: 10;">
+            <Label text="Student Dashboard – Route Info" styleClass="label-header"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="button-red"/>
+        </HBox>
+    </top>
+
+    <!-- ── LEFT SIDEBAR ── -->
+    <left>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <!-- profile -->
+            <Label text="Your Profile" styleClass="label-sub"/>
+            <TextArea fx:id="studentProfileArea" editable="false" prefWidth="200" prefHeight="200"/>
+
+            <!-- feedback -->
+            <Label text="Feedback" styleClass="label-sub"/>
+            <TextArea fx:id="feedbackArea" promptText="Write your feedback here…"
+                      prefRowCount="3" prefWidth="200"/>
+            <Button text="Send Feedback"
+                    onAction="#handleFeedback"
+                    styleClass="button-blue"/>
+        </VBox>
+    </left>
+
+    <!-- ── MAIN CONTENT ── -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-padding: 10;">
+            <content>
+                <VBox spacing="20">
+
+                    <!-- route picker -->
+                    <Label text="Select Route to Track" styleClass="label-sub"/>
+                    <HBox spacing="10">
+                        <Label text="Route:"/>
+                        <ComboBox fx:id="routeComboBox" prefWidth="300" onAction="#handleRouteSelection"/>
+                    </HBox>
+
+                    <!-- map -->
+                    <ImageView fx:id="routeMapView" fitWidth="600" preserveRatio="true"/>
+
+                    <Label fx:id="locationLabel"/>
+                    <Label fx:id="statusLabel"/>
+                    <Label fx:id="etaLabel"/>
+
+                    <!-- bus table -->
+                    <Label text="All Shuttle Locations" styleClass="label-sub"/>
+                    <TableView fx:id="busTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="busNoCol" text="Bus No."       prefWidth="100"/>
+                            <TableColumn fx:id="routeCol" text="Route"         prefWidth="250"/>
+                            <TableColumn fx:id="locationCol" text="Last Seen"  prefWidth="200"/>
+                            <TableColumn fx:id="timeCol" text="Last Updated"   prefWidth="150"/>
+                        </columns>
+                    </TableView>
+
+                    <!-- notices & alt transport -->
+                    <Label text="Notice Board" styleClass="label-sub"/>
+                    <TextArea fx:id="noticeBoardArea" editable="false" prefWidth="600"/>
+
+                    <Label text="Notifications" styleClass="label-sub"/>
+                    <TextArea fx:id="notificationsArea" editable="false" prefWidth="600"/>
+
+                    <Label text="Alternative Transport" styleClass="label-sub"/>
+                    <TextArea fx:id="altTransportArea" editable="false" prefWidth="600"/>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.LoginController"
+      spacing="15" alignment="CENTER"
+      style="-fx-padding: 30; -fx-background-color: white;">
+
+    <ImageView fx:id="logoImage" fitWidth="120" preserveRatio="true">
+        <image>
+            <Image url="@../assets/logo.png" />
+        </image>
+    </ImageView>
+
+    <Label text="Login" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #f57c00;" />
+    <TextField fx:id="usernameField" promptText="Username" maxWidth="250" />
+    <PasswordField fx:id="passwordField" promptText="Password" maxWidth="250" />
+    <ComboBox fx:id="roleBox" promptText="Select Role" maxWidth="250" />
+    <Button text="Login" onAction="#handleLogin"
+            style="-fx-background-color: #f57c00; -fx-text-fill: white; -fx-font-weight: bold;"
+            maxWidth="250"/>
+    <Hyperlink text="Sign Up" onAction="#goToSignup"/>
+    <Label fx:id="errorLabel" style="-fx-text-fill: red;"/>
+</VBox>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.AdminDashboardController"
+            stylesheets="@/assets/style.css"
+            styleClass="pane-white"
+            prefWidth="900" prefHeight="600">
+
+    <!-- ── HEADER ── -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" BorderPane.alignment="CENTER"
+              style="-fx-padding: 10;">
+            <Label text="Admin Dashboard – Bus Assignments" styleClass="label-header"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="button-red"/>
+        </HBox>
+    </top>
+
+    <!-- ── LEFT : driver list + search ── -->
+    <left>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Drivers" styleClass="label-sub"/>
+            <TextField fx:id="driverSearchField" promptText="Search driver..." prefWidth="180"/>
+            <TableView fx:id="driversTable" prefWidth="200" prefHeight="500">
+                <columns>
+                    <TableColumn fx:id="drvCol" text="Username" prefWidth="180"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </left>
+
+    <!-- ── CENTER : assignments, notices, feedback ── -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-padding: 10;">
+            <content>
+                <VBox spacing="20" alignment="CENTER">
+
+                    <!-- Assignment form -->
+                    <Label text="Assign / Edit Bus" styleClass="label-sub"/>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Bus Number:"/>
+                        <TextField fx:id="busNumberField" prefWidth="150"/>
+                        <Label text="Route:"/>
+                        <ComboBox fx:id="routeBox" prefWidth="300"/>
+                    </HBox>
+                    <HBox spacing="15">
+                        <Button text="Assign / Update" onAction="#handleAssign" styleClass="button-orange"/>
+                        <Button text="Remove Assignment" onAction="#handleRemove" styleClass="button-red"/>
+                    </HBox>
+
+                    <!-- Current assignments table -->
+                    <Label text="Current Assignments" styleClass="label-sub"/>
+                    <TableView fx:id="assignmentsTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="aDrvCol"   text="Driver" prefWidth="150"/>
+                            <TableColumn fx:id="aBusCol"   text="Bus #"  prefWidth="100"/>
+                            <TableColumn fx:id="aRouteCol" text="Route"  prefWidth="400"/>
+                        </columns>
+                    </TableView>
+
+                    <!-- Notice posting -->
+                    <Label text="Post Notice to Students" styleClass="label-sub"/>
+                    <TextArea fx:id="noticeArea" prefRowCount="3" wrapText="true" prefWidth="600"
+                              promptText="Type notice here…"/>
+                    <Button text="Post Notice" onAction="#handlePostNotice" styleClass="button-blue"/>
+
+                    <!-- 🟢 Status label placed here so it's visible -->
+                    <Label fx:id="statusLabel" style="-fx-text-fill: green;"/>
+
+                    <!-- Student feedback -->
+                    <Label text="Student Feedback" styleClass="label-sub" />
+                    <TableView fx:id="feedbackTable" prefHeight="250">
+                        <columns>
+                            <TableColumn fx:id="fTimeCol" text="Time"      prefWidth="120"/>
+                            <TableColumn fx:id="fNameCol" text="Name"      prefWidth="180"/>
+                            <TableColumn fx:id="fIdCol"   text="UIU ID"    prefWidth="100"/>
+                            <TableColumn fx:id="fTextCol" text="Feedback"  prefWidth="400"/>
+                        </columns>
+                    </TableView>
+                    <Button text="Delete Selected Feedback"
+                            onAction="#handleDeleteFeedback"
+                            styleClass="button-red"/>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
